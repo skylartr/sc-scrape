@@ -14,7 +14,6 @@ if not exist "%downloadPath%" mkdir "%downloadPath%"
 for /f "tokens=*" %%A in (%artistList%) do (
     set "url=%%A"
 
-    :: Extract artist name from URL (last part of URL)
     for %%B in (!url!) do set "artistName=%%~nxB"
 
     set "artistFolder=%downloadPath%\!artistName!"
