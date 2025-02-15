@@ -22,11 +22,9 @@ for /f "tokens=*" %%A in (%artistList%) do (
     echo.
     echo Downloading tracks for !artistName!...
 
-    :: Create artist folder
     if not exist "!artistFolder!" mkdir "!artistFolder!"
 
-    :: Download tracks using scdl
-    scdl -l "!url!" -t --path "!artistFolder!" --hide-progress > nul 2>&1
+    scdl -l "!url!" -t -c --path "!artistFolder!" --hide-progress > nul 2>&1
 
     echo Finished downloading for !artistName!
 )
