@@ -11,6 +11,9 @@ set "downloadPath=%CD%\SoundCloudDownloads"
 
 if not exist "%downloadPath%" mkdir "%downloadPath%"
 
+echo Logging to scdl.log
+echo ========================= > scdl.log
+
 for /f "tokens=*" %%A in (%artistList%) do (
     set "url=%%A"
 
@@ -23,13 +26,13 @@ for /f "tokens=*" %%A in (%artistList%) do (
 
     if not exist "!artistFolder!" mkdir "!artistFolder!"
 
-    scdl -l "!url!" -t -c --path "!artistFolder!" --hide-progress > nul 2>&1
+    scdl -l "!url!" -a -c --path "!artistFolder!" >> scdl.log 2>&1
 
     echo Finished downloading for !artistName!
 )
-
 echo.
 echo All downloads completed!
+echo Check scdl.log if something didn't download.
 pause
 exit /b
 
